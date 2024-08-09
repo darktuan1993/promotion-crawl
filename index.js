@@ -22,13 +22,15 @@ app.post('/download', async (req, res) => {
         // Load nội dung HTML bằng cheerio
         const $ = cheerio.load(htmlContent);
         const sectionContent = $('section').html();
+        let imgTags = '';
+        let imgTags2 = '';
+
         // Lọc thẻ section
         if (sectionContent) {
             const $section = cheerio.load(sectionContent);
+
             // Từ thẻ section lọc div có id page_specialized
             const divContent = $section('#page_specialized').html();
-            // Từ div có id page_specialized lọc ra
-
             if (divContent) {
                 const $div = cheerio.load(divContent);
 
@@ -38,29 +40,49 @@ app.post('/download', async (req, res) => {
                     imgElements.push($div(elem).attr('data-src'));
                 });
 
-                console.log('imgElements', imgElements);
                 if (imgElements.length > 0) {
-                    const imgTags = imgElements.map(src => `<img src="http:${src}" alt="Image">`).join('');
-                    // res.send(`<div>${imgTags}</div>`);
-                    res.render('dienmaycholon', { imgTags });
+                    imgTags = imgElements.map(src => `<img src="http:${src}" alt="Image">`).join('');
                 } else {
-
-                    res.send('<h1>No images found with data-src attribute</h1>');
+                    res.send('<h1>No images found with data-src attribute in #page_specialized</h1>');
+                    return;
                 }
-
             } else {
-                res.send('<h1>Không được</h1>');
+                res.send('<h1>Không tìm thấy div với id page_specialized</h1>');
+                return;
             }
 
+            // Từ thẻ section lọc div có class slide
+            const promotionContent = $section('.slide').html();
+            if (promotionContent) {
+                const $div = cheerio.load(promotionContent);
+
+                // Tìm tất cả các thẻ <img> trong promotionContent
+                const imgElements2 = [];
+                $div('img').each((i, elem) => {
+                    imgElements2.push($div(elem).attr('data-src'));
+                });
+                imgElements2.shift();
+                if (imgElements2.length > 0) {
+                    imgTags2 = imgElements2.map(src => `<img src="http:${src}" alt="Image">`).join('');
+                } else {
+                    res.send('<h1>No images found with data-src attribute in .slide</h1>');
+                    return;
+                }
+            } else {
+                res.send('<h1>Không tìm thấy div với class slide</h1>');
+                return;
+            }
+
+            // Render cả hai phần tử imgTags và imgTags2 vào template
+            res.render('dienmaycholon', { imgTags, imgTags2 });
         } else {
-            res.send('<h1>No section found</h1>');
+            res.send('<h1>Không tìm thấy thẻ section</h1>');
         }
 
     } catch (error) {
         res.send('Error fetching the website. Please check the URL and try again.');
     }
 });
-
 
 
 app.listen(5000, () => {
