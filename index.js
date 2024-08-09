@@ -3,13 +3,13 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const app = express();
 
-
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get("/", (req, res) => {
+    res.render('index.ejs');
 });
+
 
 app.post('/download', async (req, res) => {
     const { url } = req.body;
@@ -55,8 +55,6 @@ app.post('/download', async (req, res) => {
         res.send('Error fetching the website. Please check the URL and try again.');
     }
 });
-
-
 
 
 
