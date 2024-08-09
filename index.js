@@ -3,16 +3,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const app = express();
 
-app.use(express.urlencoded({ extended: false }))
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs')
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
-app.get("/", (req, res) => {
-    res.send("Express on Vercel");
-});
-app.get("/check", async (req, res) => {
-    res.render('index');
+app.get("/", async (req, res) => {
+    res.render('index.ejs');
 });
 
 
@@ -49,7 +44,7 @@ app.post('/download', async (req, res) => {
                 }
 
             } else {
-                res.send('<h1>Không có thông tin</h1>');
+                res.send('<h1>Không được</h1>');
             }
 
         } else {
