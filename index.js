@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
 });
 
 
-app.post('/download', async (req, res) => {
+app.post('/promotion', async (req, res) => {
     const { url } = req.body;
     try {
         const response = await axios.get(url);
