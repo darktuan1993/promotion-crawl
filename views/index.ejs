@@ -13,21 +13,36 @@
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
     <div class="container-md">
         <h1 class="text-center">LẤY THÔNG TIN</h1>
-        <form action="/promotion" method="POST" class="text-center">
+        <form id="promotionForm" action="/promotion" method="POST" class="text-center">
             <div class="d-flex justify-content-center mb-3">
-                <select class="form-select form-select-sm w-50" name="url" aria-label=".form-select-sm example" required>
+                <select id="urlSelect" class="form-select form-select-sm w-50" name="url" aria-label=".form-select-sm example" required>
                     <option value="" selected disabled>Mai Linh xinh đẹp chọn đường dẫn đi ạ</option>
                     <option value="https://dienmaycholon.com/">Điện Máy Chợ Lớn</option>
-                    <option value="https://example.com/2" disabled>Điện Máy Xanh</option>
+                    <option value="https://example.com/2" data-action="/promotionDienMayXanh">Điện Máy Xanh</option>
                     <option value="https://example.com/3" disabled>Nguyễn Kim</option>
-                    <option value="https://example.com/3" disabled>Điện Máy HC </option>
-                    <option value="https://example.com/3" disabled>Điện Máy PICO </option>
+                    <option value="https://example.com/3" disabled>Điện Máy HC</option>
+                    <option value="https://example.com/3" disabled>Điện Máy PICO</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Xác nhận</button>
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('urlSelect').addEventListener('change', function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const form = document.getElementById('promotionForm');
+
+        // Thay đổi hành động của form dựa trên tùy chọn được chọn
+        if (selectedOption.dataset.action) {
+            form.action = selectedOption.dataset.action;
+        } else {
+            form.action = '/promotion';  // Mặc định là /promotion
+        }
+    });
+</script>
+
 
 
 

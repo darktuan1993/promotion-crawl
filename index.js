@@ -25,8 +25,6 @@ app.post('/promotion', async (req, res) => {
         let imgTags = '';
         let imgTags2 = '';
         let imgTags3 = '';
-
-
         // Lọc thẻ section
         if (sectionContent) {
             const $section = cheerio.load(sectionContent);
@@ -83,7 +81,7 @@ app.post('/promotion', async (req, res) => {
                 $div('img').each((i, elem) => {
                     imgElements3.push($div(elem).attr('data-src'));
                 });
-                console.log('imgElements3', imgElements3)
+                // console.log('imgElements3', imgElements3)
                 if (imgElements3.length > 0) {
                     imgTags3 = imgElements3.map(src => `<img src="http:${src}" alt="Image">`).join('');
                 } else {
@@ -95,13 +93,83 @@ app.post('/promotion', async (req, res) => {
                 return;
             }
 
-
-            // Render cả hai phần tử imgTags và imgTags2 vào template
-            res.render('dienmaycholon', {imgTags, imgTags2, imgTags3});
         } else {
             res.send('<h1>Không tìm thấy thẻ section</h1>');
         }
 
+
+        let urlNew = url + "tin-khuyen-mai#khuyen-mai-hot";
+        const responseURLKhuyenMai = await axios.get(urlNew);
+        const htmlContentKhuyenMai = responseURLKhuyenMai.data;
+
+        // Load nội dung HTML với Cheerio
+        const $khuyenmai = cheerio.load(htmlContentKhuyenMai);
+
+        // Lấy nội dung của phần tử có class 'list'
+        const sectionContentKhuyenMai = $khuyenmai('.list').html();
+
+
+        if (sectionContentKhuyenMai) {
+            const $div = cheerio.load(sectionContentKhuyenMai);
+            const nameKhuyenMai = [];
+            const ngayKhuyenMai = [];
+            const imgElementsKhuyenMai = [];
+            $div('img').each((i, elem) => {
+                imgElementsKhuyenMai.push($div(elem).attr('data-src'));
+            });
+
+            $div('img').each((i, elem) => {
+                nameKhuyenMai.push($div(elem).attr('alt'));
+            });
+
+            $div('span.date').each((i, elem) => {
+                ngayKhuyenMai.push($div(elem).text().trim());
+            });
+
+            // Kết hợp các mảng vào một mảng tạm thời và sắp xếp theo ngày
+            const combinedData = ngayKhuyenMai.map((date, index) => {
+                return {
+                    date: new Date(date.split('/').reverse().join('-')), // Chuyển đổi thành đối tượng Date
+                    name: nameKhuyenMai[index], img: imgElementsKhuyenMai[index]
+                };
+            });
+
+            // Sắp xếp mảng theo ngày từ mới đến cũ
+            combinedData.sort((a, b) => b.date - a.date);
+
+            // Tách các mảng đã sắp xếp
+            ngayKhuyenMaiSorted = combinedData.map(item => item.date.toLocaleDateString('vi-VN')); // Chuyển đổi ngày về dạng chuỗi
+            nameKhuyenMaiSorted = combinedData.map(item => item.name);
+            imgElementsKhuyenMaiSorted = combinedData.map(item => item.img);
+
+            console.log('ngayKhuyenMaiSorted', ngayKhuyenMaiSorted);
+            console.log('nameKhuyenMaiSorted', nameKhuyenMaiSorted);
+            console.log('imgElementsKhuyenMaiSorted', imgElementsKhuyenMaiSorted);
+
+            // Render dữ liệu đã sắp xếp vào template
+            res.render('dienmaycholon', {
+                imgTags,
+                imgTags2,
+                imgTags3,
+                ngayKhuyenMai: ngayKhuyenMaiSorted,
+                nameKhuyenMai: nameKhuyenMaiSorted,
+                imgElementsKhuyenMai: imgElementsKhuyenMaiSorted
+            });
+
+
+            console.log('ngayKhuyenMai', ngayKhuyenMai);
+            console.log('nameKhuyenMai', nameKhuyenMai);
+            console.log('imgElements', imgElementsKhuyenMai);
+
+            // Render cả hai phần tử imgTags và imgTags2 vào template
+            res.render('dienmaycholon', {
+                imgTags, imgTags2, imgTags3, ngayKhuyenMai, nameKhuyenMai, imgElementsKhuyenMai
+            });
+
+        } else {
+            res.send('<h1>Không tìm thấy phần tử</h1>');
+
+        }
     } catch (error) {
         res.send('Error fetching the website. Please check the URL and try again.');
     }
