@@ -13,7 +13,7 @@ app.get("/", async (req, res) => {
     await res.render("index", {});
 });
 
-
+// ĐIỆN MÁY CHỢ LỚN
 app.post('/promotion', async (req, res) => {
     const {url} = req.body;
     try {
@@ -174,6 +174,9 @@ app.post('/promotion', async (req, res) => {
         res.send('Error fetching the website. Please check the URL and try again.');
     }
 });
+
+// ĐIỆN MÁY XANH
+
 
 
 app.listen(5000, () => {
