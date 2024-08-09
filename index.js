@@ -5,7 +5,7 @@ const app = express();
 const path = require('path')
 
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -15,7 +15,7 @@ app.get("/", async (req, res) => {
 
 
 app.post('/promotion', async (req, res) => {
-    const { url } = req.body;
+    const {url} = req.body;
     try {
         const response = await axios.get(url);
         const htmlContent = response.data;
@@ -24,6 +24,8 @@ app.post('/promotion', async (req, res) => {
         const sectionContent = $('section').html();
         let imgTags = '';
         let imgTags2 = '';
+        let imgTags3 = '';
+
 
         // Lọc thẻ section
         if (sectionContent) {
@@ -73,8 +75,29 @@ app.post('/promotion', async (req, res) => {
                 return;
             }
 
+            const preferential = $section('.preferential').html();
+            if (preferential) {
+                const $div = cheerio.load(preferential);
+                // Tìm tất cả các thẻ <img> trong promotionContent
+                const imgElements3 = [];
+                $div('img').each((i, elem) => {
+                    imgElements3.push($div(elem).attr('data-src'));
+                });
+                console.log('imgElements3', imgElements3)
+                if (imgElements3.length > 0) {
+                    imgTags3 = imgElements3.map(src => `<img src="http:${src}" alt="Image">`).join('');
+                } else {
+                    res.send('<h1>No images found with data-src attribute in .slide</h1>');
+                    return;
+                }
+            } else {
+                res.send('<h1>Không tìm thấy div với class slide</h1>');
+                return;
+            }
+
+
             // Render cả hai phần tử imgTags và imgTags2 vào template
-            res.render('dienmaycholon', { imgTags, imgTags2 });
+            res.render('dienmaycholon', {imgTags, imgTags2, imgTags3});
         } else {
             res.send('<h1>Không tìm thấy thẻ section</h1>');
         }
