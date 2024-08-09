@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.get("/", async (req, res) => {
-    res.render('index.ejs');
+    await res.render('index.ejs');
 });
 
 
