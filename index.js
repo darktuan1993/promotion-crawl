@@ -40,9 +40,11 @@ app.post('/download', async (req, res) => {
 
                 console.log('imgElements', imgElements);
                 if (imgElements.length > 0) {
-                    const imgTags = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
-                    res.send(`<div>${imgTags}</div>`);
+                    const imgTags = imgElements.map(src => `<img src="http:${src}" alt="Image">`).join('');
+                    // res.send(`<div>${imgTags}</div>`);
+                    res.render('dienmaycholon', { imgTags });
                 } else {
+
                     res.send('<h1>No images found with data-src attribute</h1>');
                 }
 

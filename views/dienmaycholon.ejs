@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        .columns {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .column img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .column-1 {
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .column-2, .column-3 {
+            background-color: #ffffff;
+        }
+        .slide-container {
+            margin-top: 20px;
+        }
+        .slide {
+            display: none;
+        }
+        .active-slide {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ĐIỆN MÁY CHỢ LỚN SCRAPING IMAGE</h1>
+    <div class="columns">
+        <div class="column column-1">
+            <h2> 3 ẢNH Ở DƯỚI BANNER</h2>
+            <div class="image-container">
+                <%- imgTags %> <!-- Sử dụng <%- %> để render HTML không bị escape -->
+            </div>
+            <div class="slide-container">
+                <div class="slide active-slide">
+                    <p>Slide 1 content goes here.</p>
+                </div>
+                <div class="slide">
+                    <p>Slide 2 content goes here.</p>
+                </div>
+                <div class="slide">
+                    <p>Slide 3 content goes here.</p>
+                </div>
+            </div>
+        </div>
+        <div class="column column-2">
+            <h2> ẢNH SLIDE CHẠY CHẠY </h2>
+            <p>Content for the second column goes here.</p>
+        </div>
+        <div class="column column-3">
+            <h2>Column 3</h2>
+            <p>Content for the third column goes here.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple script to cycle through slides
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active-slide');
+            if (i === index) {
+                slide.classList.add('active-slide');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+</script>
+</body>
+</html>

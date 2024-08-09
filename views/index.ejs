@@ -5,14 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lọc Banner</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>Nhập đường dẫn</h1>
-    <form action="/download" method="POST">
-        <input type="text" name="url" placeholder="Nhập link cần tải" required>
-        <button type="submit">Xác nhận</button>
-    </form>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+    <div class="container-md">
+        <h1 class="text-center">LẤY THÔNG TIN</h1>
+        <form action="/download" method="POST" class="text-center">
+            <div class="d-flex justify-content-center mb-3">
+                <select class="form-select form-select-sm w-50" name="url" aria-label=".form-select-sm example" required>
+                    <option value="" selected disabled>Mai Linh xinh đẹp chọn đường dẫn đi ạ</option>
+                    <option value="https://dienmaycholon.com/">Điện Máy Chợ Lớn</option>
+                    <option value="https://example.com/2" disabled>Link 2</option>
+                    <option value="https://example.com/3" disabled>Link 3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Xác nhận</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
