@@ -18,7 +18,7 @@ app.post('/promotion', async (req, res) => {
     const {url} = req.body;
     try {
         const response = await axios.get(url);
-        const htmlContent = response.data;
+        const htmlContent = await response.data;
         // Load nội dung HTML bằng cheerio
         const $ = cheerio.load(htmlContent);
         const sectionContent = $('section').html();
@@ -100,7 +100,7 @@ app.post('/promotion', async (req, res) => {
 
         let urlNew = url + "tin-khuyen-mai#khuyen-mai-hot";
         const responseURLKhuyenMai = await axios.get(urlNew);
-        const htmlContentKhuyenMai = responseURLKhuyenMai.data;
+        const htmlContentKhuyenMai = await responseURLKhuyenMai.data;
 
         // Load nội dung HTML với Cheerio
         const $khuyenmai = cheerio.load(htmlContentKhuyenMai);
@@ -162,7 +162,7 @@ app.post('/promotion', async (req, res) => {
             console.log('imgElements', imgElementsKhuyenMai);
 
             // Render cả hai phần tử imgTags và imgTags2 vào template
-            res.render('dienmaycholon', {
+            await res.render('dienmaycholon', {
                 imgTags, imgTags2, imgTags3, ngayKhuyenMai, nameKhuyenMai, imgElementsKhuyenMai
             });
 
@@ -176,7 +176,6 @@ app.post('/promotion', async (req, res) => {
 });
 
 // ĐIỆN MÁY XANH
-
 
 
 app.listen(5000, () => {
