@@ -44,7 +44,7 @@ app.post('/download', async (req, res) => {
                 }
 
             } else {
-                res.send('<h1>No section found</h1>');
+                res.send('<h1>Không có thông tin</h1>');
             }
 
         } else {
