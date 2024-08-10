@@ -6,48 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lọc Banner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .banner-bg {
+            background: url(https://samar.wprdx.com/welcome/images/bg1.jpg) no-repeat center;
+            background-size: cover;
+            height: 100vh;
+            padding: 0;
+            display: flex;
+        }
+
+        .khung_hinh_glass {
+            width: 50%;
+            height: 50%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+
+        .btn-grad {
+            background-image: linear-gradient(to right, #9D50BB 0%, #6E48AA 51%, #9D50BB 100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 0 2px #eee;
+            border-radius: 10px;
+        }
+
+        .btn-grad:hover {
+            background-position: right center;
+            /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .khung-select {
+            padding: 10px;
+            border-radius: 10rem;
+            font-size: 18px;
+
+        }
+    </style>
 </head>
 
 <body>
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-    <div class="container-md">
-        <h1 class="text-center">LẤY THÔNG TIN KHUYẾN MẠI</h1>
-        <form id="promotionForm" action="/promotion" method="POST" class="text-center">
-            <div class="d-flex justify-content-center mb-3">
-                <select id="urlSelect" class="form-select form-select-sm w-50" name="url" aria-label=".form-select-sm example" required>
-                    <option value="" selected disabled>vui lòng chọn đơn vị</option>
-                    <option value="https://dienmaycholon.com/">Điện Máy Chợ Lớn</option>
-                    <option value="https://example.com/2" disabled data-action="/promotionDienMayXanh">Điện Máy Xanh</option>
-                    <option value="https://example.com/3" disabled>Nguyễn Kim</option>
-                    <option value="https://example.com/3" disabled>Điện Máy HC</option>
-                    <option value="https://example.com/3" disabled>Điện Máy PICO</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Lấy thông tin</button>
-        </form>
+    <div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
+        <div class="container-md">
+
+            <h1 class="text-center text-white"> ❤️SCRAPE DATA PROMOTION❤️</h1>
+            <form id="promotionForm" action="/promotion" method="POST" class="text-center">
+                <div class="d-flex justify-content-center mb-3">
+                    <select id="urlSelect" class="form-select form-select-sm w-50 khung-select" name="url"
+                        aria-label=".form-select-sm example" required>
+                        <option value="" selected disabled>vui lòng chọn đơn vị</option>
+                        <option value="https://dienmaycholon.com/">Điện Máy Chợ Lớn</option>
+                        <option value="https://example.com/2" disabled data-action="/promotionDienMayXanh">Điện Máy
+                            Xanh
+                        </option>
+                        <option value="https://example.com/3" disabled>Nguyễn Kim</option>
+                        <option value="https://example.com/3" disabled>Điện Máy HC</option>
+                        <option value="https://example.com/3" disabled>Điện Máy PICO</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-grad fw-bold">CHECK THÔNG TIN</button>
+            </form>
+        </div>
     </div>
-</div>
+    <script>
+        document.getElementById('urlSelect').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const form = document.getElementById('promotionForm');
 
-<script>
-    document.getElementById('urlSelect').addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const form = document.getElementById('promotionForm');
-
-        // Thay đổi hành động của form dựa trên tùy chọn được chọn
-        if (selectedOption.dataset.action) {
-            form.action = selectedOption.dataset.action;
-        } else {
-            form.action = '/promotion';  // Mặc định là /promotion
-        }
-    });
-</script>
+            // Thay đổi hành động của form dựa trên tùy chọn được chọn
+            if (selectedOption.dataset.action) {
+                form.action = selectedOption.dataset.action;
+            } else {
+                form.action = '/promotion';  // Mặc định là /promotion
+            }
+        });
+    </script>
 
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
