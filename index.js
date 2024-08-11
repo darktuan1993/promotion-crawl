@@ -11,7 +11,7 @@ const promotionDienMayChoLon = require('./companyRouting/dienmaycholon')
 const promotionDienMayXanh = require('./companyRouting/dienmayxanh')
 // Root Path
 app.get("/", async (req, res) => {
-    await res.render("index", {});
+    await res.render("server", {});
 });
 
 // ĐIỆN MÁY CHỢ LỚN
