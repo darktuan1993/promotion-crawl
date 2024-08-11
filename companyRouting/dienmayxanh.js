@@ -20,7 +20,7 @@ module.exports = async function promotionDienMayChoLon(req, res) {
         if (sectionContent) {
             const $section = cheerio.load(sectionContent);
 
-            // Xử lý div với id page_specialized
+            // Xử lý div với bg-tophome
             const divContent = $section('.bg-tophome').html();
             if (divContent) {
                 const $div = cheerio.load(divContent);
