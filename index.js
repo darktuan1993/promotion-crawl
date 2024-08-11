@@ -48,10 +48,11 @@ app.get('/download-pdf-cholon', async (req, res) => {
 // Route để xuất PDF cho trang Điện Máy Xanh
 app.get('/download-pdf-xanh', async (req, res) => {
     const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    console.log(browser)
     const page = await browser.newPage();
 
     // Render trang HTML mà bạn muốn xuất PDF
-    await page.goto(`http://localhost:5000/promotionDienMayXanh`, {
+    await page.goto(`http://localhost:5000`, {
         waitUntil: 'networkidle0'
     });
 
