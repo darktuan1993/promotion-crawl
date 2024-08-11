@@ -60,13 +60,16 @@
 <div class="container-fluid py-5">
     <h1 class="text-center mb-2">ĐIỆN MÁY XANH SCRAPING IMAGE</h1>
     <div class="text-center py-3">
-        <button type="submit" class="btn btn-success">Export File PDF</button>
+        <form action="/download-pdf-xanh" method="get">
+            <button type="submit" class="btn btn-success">Export File PDF</button>
+        </form>
     </div>
+
     <div class="row">
         <div class="bg-light-custom col-lg-12">
             <h2 class="text-center">ẢNH BANNER</h2>
             <div class="image-container">
-                <%- imgTags2 %> <!-- Sử dụng <%-       %> để render HTML không bị escape -->
+                <%- imgTags2 %> <!-- Sử dụng <%-         %> để render HTML không bị escape -->
             </div>
         </div>
         <hr>
