@@ -33,10 +33,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             if (imgElements.length > 0) {
                 imgTags2 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
             } else {
-                return res.send('<h1>No images found with data-src attribute in #page_specialized</h1>');
+                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
             }
         } else {
-            return res.send('<h1>Không tìm thấy div với id page_specialized</h1>');
+            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
 
 
@@ -78,11 +78,11 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             });
 
         } else {
-            return res.send('<h1>Không tìm thấy thẻ section</h1>');
+            return res.send('<h1>Không tìm thấy dữ liệu</h1>');
         }
 
 
     } catch (error) {
-        res.status(500).send('Lỗi dữ liệu không thể lấy được dữ liệu của Điện Máy Xanh, vui lòng load lại dữ liệu thêm lần nữa');
+        res.status(500).send('Lỗi dữ liệu không thể lấy được dữ liệu của Điện Máy Xanh, vui lòng load lại dữ liệu thêm lần nữa, Mai Linh tình yêu của anh ơi');
     }
 };

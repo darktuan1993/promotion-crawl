@@ -35,7 +35,7 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 if (imgElements.length > 0) {
                     imgTags = imgElements.map(src => `<img src="http:${src}" alt="Image">`).join('');
                 } else {
-                    return res.send('<h1>No images found with data-src attribute in #page_specialized</h1>');
+                    return res.send('<h1>Không tìm thấy dữ liệu</h1>');
                 }
             } else {
                 return res.send('<h1>Không tìm thấy div với id page_specialized</h1>');
@@ -56,10 +56,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 if (imgElements2.length > 0) {
                     imgTags2 = imgElements2.map(src => `<img src="http:${src}" alt="Image">`).join('');
                 } else {
-                    return res.send('<h1>No images found with data-src attribute in .slide</h1>');
+                    return res.send('<h1>Không tìm thấy dữ liệu</h1>');
                 }
             } else {
-                return res.send('<h1>Không tìm thấy div với class slide</h1>');
+                return res.send('<h1>Không tìm thấy dữ liệu</h1>');
             }
 
             // Xử lý div với class preferential
@@ -76,10 +76,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 if (imgElements3.length > 0) {
                     imgTags3 = imgElements3.map(src => `<img src="http:${src}" alt="Image">`).join('');
                 } else {
-                    return res.send('<h1>No images found with data-src attribute in .preferential</h1>');
+                    return res.send('<h1>Không tìm thấy dữ liệu</h1>');
                 }
             } else {
-                return res.send('<h1>Không tìm thấy div với class preferential</h1>');
+                return res.send('<h1>Không tìm thấy dữ liệu</h1>');
             }
         } else {
             return res.send('<h1>Không tìm thấy thẻ section</h1>');
@@ -139,6 +139,6 @@ module.exports = async function promotionDienMayChoLon(req, res) {
         }
     } catch (error) {
         console.error('Error:', error); // Ghi lại lỗi để theo dõi
-        res.status(500).send('Error fetching the website. Please check the URL and try again.');
+        res.status(500).send('Lỗi dữ liệu không thể lấy được dữ liệu của Điện Máy Xanh, vui lòng load lại dữ liệu thêm lần nữa, Mai Linh tình yêu của anh ơi');
     }
 };
