@@ -17,6 +17,31 @@ module.exports = async function promotionDienMayChoLon(req, res) {
         const $ = cheerio.load(htmlContent);
         const sectionContent = $('section').html();
 
+        // big-banner
+        const bigBanner = $('.big-banner').html();
+        if (bigBanner) {
+            const $div = cheerio.load(bigBanner);
+            const imgElements = [];
+
+            $div('img').each((i, elem) => {
+                const src = $div(elem).attr('src');
+                if (src) imgElements.push(src);
+            });
+
+            console.log('imgElements', imgElements);
+
+            if (imgElements.length > 0) {
+                imgTags2 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
+            } else {
+                return res.send('<h1>No images found with data-src attribute in #page_specialized</h1>');
+            }
+        } else {
+            return res.send('<h1>Không tìm thấy div với id page_specialized</h1>');
+        }
+
+
+
+        // sectionContent
         if (sectionContent) {
             const $section = cheerio.load(sectionContent);
 
@@ -53,8 +78,7 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 // imgElementsKhuyenMai: imgElementsKhuyenMaiSorted
             });
 
-        }
-        else {
+        } else {
             return res.send('<h1>Không tìm thấy thẻ section</h1>');
         }
 
