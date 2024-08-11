@@ -6,7 +6,7 @@ module.exports = async function promotionDienMayChoLon(req, res) {
     const { url } = req.body;
     try {
         // Fetch dữ liệu từ URL
-        const response = await axios.get(url);
+        const response = await axios.get(`${url}?cachebuster=${new Date().getTime()}`);
         const htmlContent = response.data;
 
         // Load nội dung HTML bằng cheerio
