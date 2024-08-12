@@ -70,7 +70,7 @@ app.post('/promotionDienMayXanh', promotionDienMayXanh);
 // });
 
 app.listen(5000, () => {
-    console.log("Running Server on port 5000.");
+    console.log("Server chạy port 5000.");
 });
 
 module.exports = app;
