@@ -15,7 +15,12 @@ module.exports = async function promotionDienMayChoLon(req, res) {
         let imgTags8 = '';
         let imgTags9 = '';
         let imgTags10 = '';
-
+        let nameKhuyenMai = [];
+        let ngayKhuyenMai = [];
+        let imgElementsKhuyenMai = [];
+        let ngayKhuyenMaiSorted = [];
+        let nameKhuyenMaiSorted = [];
+        let imgElementsKhuyenMaiSorted = []
         // Fetch dữ liệu từ URL
         const response = await axios.get(`${url}?cachebuster=${new Date().getTime()}`);
         const htmlContent = response.data;
@@ -95,12 +100,27 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             }
         }
 
+
+        // Tên thương hiệu
+        // let textpromoAnother = '';
+        // const promoAnotherText = $('.prd-promo__title').html();
+
+        // if (promoAnotherText) {
+        //     const $promoAnotherText = cheerio.load(promoAnotherText);
+        //     $promoAnotherText('p').each((i, elem) => {
+        //         textpromoAnother += $promoAnotherText(elem).text().trim();
+        //     });
+        // }
+
+        // console.log("textpromoAnother:", textpromoAnother);
+
+
         // Tuần lễ thương hiệu
         const promoAnother = $('.prd-another').html();
         if (promoAnother) {
-            // Sử dụng đúng biến promo7day để tạo cheerio object
             const $promoAnother = cheerio.load(promoAnother);
             const imgElements = [];
+
 
             $promoAnother('img').each((i, elem) => {
                 const src = $promoAnother(elem).attr('src');
@@ -186,15 +206,55 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 const src = $newchain(elem).attr('src');
                 if (src) imgElements.push(src);
             });
-            console.log('$trademark', imgElements);
+            // console.log('$trademark', imgElements);
 
             if (imgElements.length > 0) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
                 imgTags8 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('')
             } else {
-                imgTags8 = "Không có thông tin"
+                imgTags8 = "Không có chương trình"
             }
         }
+        // Fetch dữ liệu từ URL khuyến mãi
+        const urlNew = `${url}khuyen-mai`;
+        // console.log('urlNew', urlNew);
+
+        const responseURLKhuyenMai = await axios.get(urlNew);
+        const htmlContentKhuyenMai = responseURLKhuyenMai.data;
+
+        // Load nội dung HTML với Cheerio
+        const $khuyenmai = await cheerio.load(htmlContentKhuyenMai);
+        const sectionContentKhuyenMai = $khuyenmai('.ul-list_newspro').html();
+
+        // console.log('sectionContentKhuyenMai', sectionContentKhuyenMai);
+        if (sectionContentKhuyenMai) {
+            const $div = cheerio.load(sectionContentKhuyenMai);
+
+
+            $div('img').each((i, elem) => {
+                // console.log('elem', elem);
+
+                imgElementsKhuyenMai.push($div(elem).attr('data-original'));
+                nameKhuyenMai.push($div(elem).attr('alt'));
+            });
+
+            $div('span.news-info').each((i, elem) => {
+                ngayKhuyenMai.push($div(elem).text().trim());
+            });
+
+
+
+            if (ngayKhuyenMai.length > 0) {
+                ngayKhuyenMaiSorted = ngayKhuyenMai
+                nameKhuyenMaiSorted = nameKhuyenMai
+                imgElementsKhuyenMaiSorted = imgElementsKhuyenMai
+
+            }
+
+        }
+
+        console.log(ngayKhuyenMai, imgElementsKhuyenMai, nameKhuyenMai);
+
 
         res.render('dienmayxanh', {
             imgTags,
@@ -206,7 +266,11 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             imgTags7,
             imgTags8,
             imgTags9,
-            imgTags10
+            imgTags10,
+            ngayKhuyenMaiSorted,
+            nameKhuyenMaiSorted,
+            textpromoAnother,
+            imgElementsKhuyenMaiSorted
         });
 
     } catch (error) {

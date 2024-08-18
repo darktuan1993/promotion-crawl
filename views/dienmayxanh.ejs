@@ -57,103 +57,137 @@
 </head>
 
 <body>
-<div class="container-fluid py-5">
-    <h1 class="text-center mb-2">ĐIỆN MÁY XANH SCRAPING IMAGE</h1>
-    <div class="text-center py-3">
-        <form action="/download-pdf-xanh" method="get">
-            <button type="submit" class="btn btn-success">Export File PDF</button>
-        </form>
-    </div>
+    <div class="container-fluid py-5">
+        <h1 class="text-center mb-2">ĐIỆN MÁY XANH SCRAPING IMAGE</h1>
+        <div class="text-center py-3">
+            <h2>Ấn Ctrl + P để in hoặc lưu thành PDF</h2>
+            <!-- <form action="/download-pdf-xanh" method="get">
+            <button type="submit" class="btn btn-primary" onclick="window.print()">Em ấn vào đây nhé</button>
+        </form> -->
+        </div>
 
-    <div class="row">
-        <div class="bg-light-custom col-lg-12">
-            <h2 class="text-center">ẢNH BANNER</h2>
-            <div class="image-container">
-                <%- imgTags2 %> <!-- Sử dụng <%-         %> để render HTML không bị escape -->
-            </div>
-        </div>
-        <hr>
-        <div class="col-lg-4 mb-4">
-            <div class="my-4">
-            </div>
-            <div class="bg-light-custom">
-                <h2 class="text-center">BANNER HOT DEAL</h2>
-                <hr>
-                <h3 class="text-center">Chương trình hot-deal</h3>
-                <div class="slide-container">
-                    <%- imgTags3 %>
-                </div>
-                <hr>
-                <h3 class="text-center">Chương trình 7 ngày</h3>
-                <div class="slide-container">
-                    <%- imgTags4 %>
-                </div>
-                <hr>
-                <h3 class="text-center">Tuần lễ thương hiệu</h3>
-                <div class="slide-container">
-                    <%- imgTags5 %>
-                </div>
-                <hr>
-                <h3 class="text-center">Has Banner</h3>
-                <div class="slide-container">
-                    <%- imgTags6 %>
-                </div>
-                <hr>
-                <h3 class="text-center">Chuyên trang thương hiệu</h3>
-                <div class="slide-container">
-                    <%- imgTags7 %>
-                </div>
-                <hr>
-                <h3 class="text-center">Chuỗi mới deal khủng</h3>
-                <div class="slide-container">
-                    <%- imgTags8 %>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8 mb-4">
-            <div class="bg-light-custom">
-                <hr>
-                <h2 class="text-center">ẢNH CAROUSEL</h2>
-                <div class="image-container2">
-                    <%- imgTags %>
-                </div>
-            </div>
-            <div class="my-4">
-                <hr>
-            </div>
-            <div class="bg-light-custom">
-                <h2 class="text-center">TIN KHUYẾN MẠI</h2>
+        <div class="row">
+            <div class="bg-light-custom col-lg-12">
+                <h2 class="text-center">ẢNH BANNER</h2>
                 <div class="image-container">
+                    <%- imgTags2 %> <!-- Sử dụng <%-         %> để render HTML không bị escape -->
+                </div>
+            </div>
+            <hr>
+            <div class="col-lg-4 mb-4">
+                <div class="my-4">
+                </div>
+                <div class="bg-light-custom">
+                    <h2 class="text-center">BANNER HOT DEAL</h2>
+                    <hr>
+                    <h3 class="text-center">Chương trình hot-deal</h3>
+                    <div class="slide-container text-center">
+                        <p><%- imgTags3 %></p>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">Chương trình 7 ngày</h3>
+                    <div class="slide-container text-center">
+                        <p><%- imgTags4 %></p>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">Tuần lễ thương hiệu</h3>
+                    <h4 class="text-center">
+                        <%= textpromoAnother %>
+                    </h4>
+
+                    <div class="slide-container text-center">
+                        <%- imgTags5 %>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">Has Banner</h3>
+                    <div class="slide-container text-center">
+                        <%- imgTags6 %>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">Chuyên trang thương hiệu</h3>
+                    <div class="slide-container text-center">
+                        <%- imgTags7 %>
+                    </div>
+                    <hr>
+                    <h3 class="text-center">Chuỗi mới deal khủng</h3>
+                    <div class="slide-container text-center">
+                        <%- imgTags8 %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+                <div class="bg-light-custom">
+                    <hr>
+                    <h2 class="text-center">ẢNH CAROUSEL</h2>
+                    <div class="image-container2 text-center">
+                        <%- imgTags %>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <hr>
+                </div>
+                <div class="bg-light-custom">
+                    <h2 class="text-center">TIN KHUYẾN MẠI</h2>
+                    <div class="image-container">
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Ngày Tháng</th>
+                                    <th>Tên Khuyến Mại</th>
+                                    <th>Ảnh Khuyến Mại</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i < ngayKhuyenMaiSorted.length; i++) { %>
+                                    <tr>
+                                        <td>
+                                            <%= ngayKhuyenMaiSorted[i] %>
+                                        </td>
+                                        <td>
+                                            <%= nameKhuyenMaiSorted[i] %>
+                                        </td>
+                                        <td>
+                                            <% if(imgElementsKhuyenMaiSorted[i]) { %>
+                                                <img width="75%" src="<%= imgElementsKhuyenMaiSorted[i] %>"
+                                                    alt="Khuyến Mại">
+                                                <% } else { %>
+                                                    Không có ảnh
+                                                    <% } %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    // Simple script to cycle through slides
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
+    <script>
+        // Simple script to cycle through slides
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active-slide');
-            if (i === index) {
-                slide.classList.add('active-slide');
-            }
-        });
-    }
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active-slide');
+                if (i === index) {
+                    slide.classList.add('active-slide');
+                }
+            });
+        }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
 
-    setInterval(nextSlide, 3000); // Change slide every 3 seconds
-</script>
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    </script>
 </body>
 
 </html>
