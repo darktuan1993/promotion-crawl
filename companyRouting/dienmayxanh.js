@@ -269,7 +269,6 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             imgTags10,
             ngayKhuyenMaiSorted,
             nameKhuyenMaiSorted,
-            textpromoAnother,
             imgElementsKhuyenMaiSorted
         });
 
