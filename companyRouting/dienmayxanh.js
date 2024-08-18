@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 module.exports = async function promotionDienMayChoLon(req, res) {
-    const {url} = req.body;
+    const { url } = req.body;
     try {
         // Khởi tạo biến chứa các thẻ <img> HTML
         let imgTags = '';
@@ -72,12 +72,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             } else {
                 return res.send('<h1>Không tìm thấy dữ liệu </h1>');
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
 
 
-        // Hot Deal
+        // // Hot Deal
         const hotDeal = $('.hotdeal').html();
         if (hotDeal) {
             const $hotDeal = cheerio.load(hotDeal);
@@ -93,10 +91,8 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             if (imgElements.length > 0) {
                 imgTags3 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags3 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
 
         // Tuần lễ thương hiệu
@@ -114,12 +110,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
             if (imgElements.length > 0) {
                 imgTags5 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags5 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
-        // 7 ngày
+        // // 7 ngày
         const promo7day = $('.promo-7day').html();
         if (promo7day) {
             const $promo7day = cheerio.load(promo7day);  // Sử dụng đúng biến promo7day
@@ -136,12 +130,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
                 imgTags4 = `<img src="${imgElements[0]}" alt="Image">`;
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags4 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
-        // Has banner
+        // // Has banner
         const hasBanner = $('.promo-muanong').html();
         if (hasBanner) {
             const $hasBanner = cheerio.load(hasBanner);  // Sử dụng đúng biến promo7day
@@ -158,12 +150,10 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
                 imgTags6 = `<img src="${imgElements[0]}" alt="Image">`;
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags6 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
-        // TradeMart
+        // // TradeMart
         const trademark = $('.trademark').html();
         // console.log('trademark',trademark)
         if (trademark) {
@@ -181,15 +171,13 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
                 imgTags7 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('')
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags7 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
 
         // Chuỗi mới deal khủng
         const newChain = $('.newchain').html();
-        console.log('trademark',newChain)
+        console.log('trademark', newChain)
         if (newChain) {
             const $newchain = cheerio.load(newChain);
             const imgElements = [];
@@ -204,10 +192,8 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
                 imgTags8 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('')
             } else {
-                return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+                imgTags8 = "Không có thông tin"
             }
-        } else {
-            return res.send('<h1>Không tìm thấy dữ liệu </h1>');
         }
 
         res.render('dienmayxanh', {
