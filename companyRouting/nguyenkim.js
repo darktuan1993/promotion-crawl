@@ -44,7 +44,7 @@ module.exports = async function promotionNguyenKim(req, res) {
             if (imgElements.length > 0) {
                 imgTags = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
             } else {
-                imgTags = "kHÔNG CÓ CHƯƠNG TRÌNH"
+                imgTags = "kHÔNG CÓ CHƯƠNG TRÌNH GÌ"
             }
             // console.log('imgTags', imgTags);
 
