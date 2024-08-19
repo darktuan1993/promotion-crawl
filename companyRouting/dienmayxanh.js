@@ -128,7 +128,7 @@ module.exports = async function promotionDienMayXanh(req, res) {
             });
 
             if (imgElements.length > 0) {
-                imgTags5 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
+                imgTags5 = imgElements.map(src => `<img style="max-width: 50%;" src="${src}" alt="Image">`).join('');
             } else {
                 imgTags5 = "Không có thông tin"
             }
@@ -189,7 +189,7 @@ module.exports = async function promotionDienMayXanh(req, res) {
 
             if (imgElements.length > 0) {
                 // imgTags4 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
-                imgTags7 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('')
+                imgTags7 = imgElements.map(src => `<img  style="max-width: 50%;" src="${src}" alt="Image">`).join('')
             } else {
                 imgTags7 = "Không có thông tin"
             }

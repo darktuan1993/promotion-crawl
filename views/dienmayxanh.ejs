@@ -17,13 +17,13 @@
         }
 
         .image-container img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             margin-bottom: 15px;
         }
 
         .image-container2 img {
-            max-width: 50%;
+            max-width: 33%;
             height: auto;
             margin-bottom: 10px;
             padding: 10px;
@@ -48,7 +48,13 @@
         }
 
         .table img {
-            max-width: 100%;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        .width-image{
+          max-width: 33%;
             height: auto;
             margin: 0 auto;
             display: block;
@@ -69,7 +75,7 @@
         <div class="row">
             <div class="bg-light-custom col-lg-12">
                 <h2 class="text-center text-info">ẢNH BANNER</h2>
-                <div class="image-container">
+                <div class="image-container text-center">
                     <%- imgTags2 %> <!-- Sử dụng <%-         %> để render HTML không bị escape -->
                 </div>
             </div>
