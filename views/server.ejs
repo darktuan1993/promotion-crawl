@@ -7,13 +7,17 @@
     <title>Lọc Banner</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Trad:wght@100..400&family=Teko:wght@500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .banner-bg {
-            background: url(https://samar.wprdx.com/welcome/images/bg1.jpg) no-repeat center;
+            background: url(https://static.vecteezy.com/system/resources/previews/010/839/424/original/aesthetic-minimal-cute-pastel-pink-wallpaper-with-abstract-checkers-checkerboard-decoration-backdrop-illustration-perfect-for-wallpaper-backdrop-postcard-background-banner-vector.jpg) no-repeat center;
             background-size: cover;
             height: 100vh;
             padding: 0;
@@ -32,7 +36,7 @@
 
 
         .btn-grad {
-            background-image: linear-gradient(to right, #9D50BB 0%, #6E48AA 51%, #9D50BB 100%);
+            background-image: linear-gradient(to left, #ffb3c6 0%, #ff8fab 50%, #fb6f92 80%);
             margin: 10px;
             padding: 15px 45px;
             text-align: center;
@@ -40,7 +44,7 @@
             transition: 0.5s;
             background-size: 200% auto;
             color: white;
-            box-shadow: 0 0 0 2px #eee;
+            box-shadow: 0 0 0 0 #fb6f92;
             border-radius: 10px;
         }
 
@@ -52,10 +56,18 @@
         }
 
         .khung-select {
-            padding: 10px;
+            padding: 15px;
             border-radius: 10rem;
             font-size: 18px;
 
+        }
+
+        .color-text {
+            color: #ff8fab;
+            font-family: "Playwrite IT Trad", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
     </style>
 </head>
@@ -64,12 +76,12 @@
     <div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
         <div class="container-md">
 
-            <h1 class="text-center text-white">CRAWL PROMOTION</h1>
+            <h1 class="text-center color-text">Check Promotion</h1>
             <form id="promotionForm" action="/" method="POST" class="text-center">
                 <div class="d-flex justify-content-center mb-3">
-                    <select id="urlSelect" class="form-select form-select-sm w-50 khung-select" name="url"
+                    <select id="urlSelect" class="form-select color-text form-select-sm w-50 khung-select" name="url"
                         aria-label=".form-select-sm example" required>
-                        <option value="" selected disabled>Vui lòng chọn đơn vị</option>
+                        <option value="" selected disabled>Chọn đơn vị</option>
                         <option value="https://dienmaycholon.com/" data-action="/promotionDienMayChoLon">Điện Máy Chợ
                             Lớn</option>
                         <option value="https://www.dienmayxanh.com/" data-action="/promotionDienMayXanh">Điện Máy Xanh
@@ -80,12 +92,24 @@
                         <option value="https://example.com/3" disabled>Điện Máy PICO (đang hoàn thiện)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-grad fw-bold">TÌM KIẾM</button>
+                <button type="submit" class="btn btn-grad fw-bold ">CRAWL</button>
             </form>
-            <p class="text-white" style="
+            <p class="d-flex justify-content-center color-text align-items-center" style="
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 100%;
+                        height: 100px;
+                        margin: 0;">Anh yêu em </p>
+            <p class="d-flex justify-content-center color-text align-items-center" style="
     position: absolute;
-    bottom: 10px;
-    text-align: center;">Development by D4rkTuaz</p>
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 50px;
+    margin: 0;">Mai Linh</p>
         </div>
     </div>
 
