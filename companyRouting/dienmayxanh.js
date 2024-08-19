@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-module.exports = async function promotionDienMayChoLon(req, res) {
+module.exports = async function promotionDienMayXanh(req, res) {
     const { url } = req.body;
     try {
         // Khởi tạo biến chứa các thẻ <img> HTML
