@@ -61,41 +61,47 @@
 </head>
 
 <body>
-<div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
-    <div class="container-md">
+    <div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
+        <div class="container-md">
 
-        <h1 class="text-center text-white"> 🐓CRAWL PROMOTION❤️</h1>
-        <form id="promotionForm" action="/" method="POST" class="text-center">
-            <div class="d-flex justify-content-center mb-3">
-                <select id="urlSelect" class="form-select form-select-sm w-50 khung-select" name="url"
+            <h1 class="text-center text-white">CRAWL PROMOTION</h1>
+            <form id="promotionForm" action="/" method="POST" class="text-center">
+                <div class="d-flex justify-content-center mb-3">
+                    <select id="urlSelect" class="form-select form-select-sm w-50 khung-select" name="url"
                         aria-label=".form-select-sm example" required>
-                    <option value="" selected disabled>Vui lòng chọn đơn vị</option>
-                    <option value="https://dienmaycholon.com/" data-action="/promotionDienMayChoLon">Điện Máy Chợ Lớn (100%)</option>
-                    <option value="https://www.dienmayxanh.com/" data-action="/promotionDienMayXanh">Điện Máy Xanh (100%)</option>
-                    <option value="https://www.nguyenkim.com/" data-action="/promotionNguyenKim">Nguyễn Kim</option>
-                    <option value="https://example.com/3" disabled>Điện Máy HC (đang hoàn thiện)</option>
-                    <option value="https://example.com/3" disabled>Điện Máy PICO (đang hoàn thiện)</option>
-                </select>
-            </div >
-            <button type="submit" class="btn btn-grad fw-bold">TÌM KIẾM</button>
-        </form>
-
+                        <option value="" selected disabled>Vui lòng chọn đơn vị</option>
+                        <option value="https://dienmaycholon.com/" data-action="/promotionDienMayChoLon">Điện Máy Chợ
+                            Lớn</option>
+                        <option value="https://www.dienmayxanh.com/" data-action="/promotionDienMayXanh">Điện Máy Xanh
+                        </option>
+                        <option value="https://www.nguyenkim.com/" data-action="/promotionNguyenKim">Điện Máy Nguyễn Kim
+                        </option>
+                        <option value="https://example.com/3" disabled>Điện Máy HC (đang hoàn thiện)</option>
+                        <option value="https://example.com/3" disabled>Điện Máy PICO (đang hoàn thiện)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-grad fw-bold">TÌM KIẾM</button>
+            </form>
+            <p class="text-white" style="
+    position: absolute;
+    bottom: 10px;
+    text-align: center;">Development by D4rkTuaz</p>
+        </div>
     </div>
-</div>
 
-<script>
-    document.getElementById('urlSelect').addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const form = document.getElementById('promotionForm');
+    <script>
+        document.getElementById('urlSelect').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const form = document.getElementById('promotionForm');
 
-        // Thay đổi action của form dựa trên tùy chọn được chọn
-        if (selectedOption.dataset.action) {
-            form.action = selectedOption.dataset.action;
-        } else {
-            form.action = '/';  // Mặc định là /promotion
-        }
-    });
-</script>
+            // Thay đổi action của form dựa trên tùy chọn được chọn
+            if (selectedOption.dataset.action) {
+                form.action = selectedOption.dataset.action;
+            } else {
+                form.action = '/';  // Mặc định là /promotion
+            }
+        });
+    </script>
 
 
 
