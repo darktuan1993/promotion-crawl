@@ -65,13 +65,36 @@ module.exports = async function promotionPico(req, res) {
         }
 
 
-
-
-
-
-
-
+        const sectionContent = $('blogList').html();
+        console.log('tintucsukien', sectionContent);
         
+        // if (sectionContent) {
+        //     const $div = cheerio.load(sectionContent);
+        //     const imgElements = [];
+
+        //     $div('img').each((i, elem) => {
+        //         const src = $div(elem).attr('src');
+        //         if (src) imgElements.push(src);
+
+        //         // console.log('src', src);
+                
+        //     });
+
+        //     console.log('imgElements', imgElements);
+
+        //     if (imgElements.length > 0) {
+        //         imgTags2 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
+        //     } else {
+        //         // return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+        //     }
+        // }
+
+
+
+
+
+        // blogList
+
         // Chiến giá online
         res.render('dienmaypico', {
             vietnamTime,
