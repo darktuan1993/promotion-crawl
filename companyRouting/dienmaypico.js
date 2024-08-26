@@ -39,14 +39,15 @@ module.exports = async function promotionPico(req, res) {
         const htmlContent = response.data;
         const $ = cheerio.load(htmlContent);
 
+        // Carosel
         const divContent = $('.homeSlider').html();
         if (divContent) {
             const $div = cheerio.load(divContent);
 
             $div('img').each((i, elem) => {
                 let src = $div(elem).attr('src');
-                console.log('src', src);
-                
+                // console.log('src', src);
+
 
                 if (src) imgElements.push(src);
             });
@@ -57,12 +58,45 @@ module.exports = async function promotionPico(req, res) {
             } else {
                 imgTags = "kHÔNG CÓ CHƯƠNG TRÌNH GÌ"
             }
-            console.log('imgTags', imgTags);
+            // console.log('imgTags', imgTags);
 
 
         } else {
             return res.send('<h1>Không tìm thấy thẻ divContent</h1>');
         }
+
+
+        // console.log('$bigBanner', $bigBanner);
+
+
+        // Chiến giá online
+        // const mainWrapper = $('.mainWrapper').html();
+        // if (mainWrapper) {
+        //     const $div = cheerio.load(mainWrapper);
+        //     console.log('$div', $div.html()); 
+
+        //     const containerContent = $div('.container').html();
+        //     console.log('containerContent', containerContent);
+
+        // }
+
+        // if (bigBanner) {
+        //     const $div = cheerio.load(bigBanner);
+        //     const imgElements = [];
+
+        //     $div('img').each((i, elem) => {
+        //         const src = $div(elem).attr('src');
+        //         if (src) imgElements.push(src);
+        //     });
+        //     console.log('bigBanner', bigBanner);
+        //     // console.log('imgElements', imgElements);
+
+        //     if (imgElements.length > 0) {
+        //         imgTags2 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
+        //     } else {
+        //         return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+        //     }
+        // }
 
         res.render('dienmaypico', {
             vietnamTime,
