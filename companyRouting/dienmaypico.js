@@ -65,40 +65,89 @@ module.exports = async function promotionPico(req, res) {
         }
 
 
-        const sectionContent = $('blogList').html();
-        console.log('tintucsukien', sectionContent);
+        // Fetch dữ liệu từ URL khuyến mãi
+        const urlNew = `${url}post`;
+        // console.log('urlNew', urlNew);
+
+        const responseURLKhuyenMai = await axios.get(urlNew);
+        const htmlContentKhuyenMai = responseURLKhuyenMai.data;
+        const $postUrl = cheerio.load(htmlContentKhuyenMai);
+        const sectionContentKhuyenMai = $postUrl('.sidebar-wrapper').html();
+        // console.log('sectionContentKhuyenMai', sectionContentKhuyenMai);
         
-        // if (sectionContent) {
-        //     const $div = cheerio.load(sectionContent);
-        //     const imgElements = [];
+        if (sectionContentKhuyenMai) {
+            const $div = cheerio.load(sectionContentKhuyenMai);
+            $div('img').each((i, elem) => {
+                // console.log('elem', elem);
+                
+                imgElementsbannerRight.push($div(elem).attr('src'));
+                
+            });
+            if (imgElementsbannerRight.length > 0) {
+                imgElementsbannerRight = imgElementsbannerRight.map(src => `<img src="${src}" alt="Image">`).join('');
+            } else {
+                return res.send('<h1>Không tìm thấy</h1>');
+            }
+            
+        }
+
+
+
+        // Fetch dữ liệu từ URL khuyến mãi
+        // const urlNew2 = `${url}hot-deal`;
+        // console.log('urlNew', urlNew2);
+
+        // const responseURLKhuyenMai2 = await axios.get(urlNew2);
+        // const htmlContentKhuyenMai2 = responseURLKhuyenMai2.data;
+
+        // console.log('htmlContentKhuyenMai2', htmlContentKhuyenMai2);
+        
+
+        // // Load nội dung HTML với Cheerio
+        // const $khuyenmai = cheerio.load(htmlContentKhuyenMai2);
+        // const sectionContentKhuyenMai2 = $khuyenmai('.infinite-scroll-component__outerdiv').html();
+        // console.log('sectionContentKhuyenMai2', sectionContentKhuyenMai2);
+        
+
+        // if (sectionContentKhuyenMai) {
+        //     const $div = cheerio.load(sectionContentKhuyenMai2);
+
 
         //     $div('img').each((i, elem) => {
-        //         const src = $div(elem).attr('src');
-        //         if (src) imgElements.push(src);
+        //         console.log('elem', elem);
 
-        //         // console.log('src', src);
-                
+        //         imgElementsKhuyenMai.push($div(elem).attr('data-original'));
+        //         nameKhuyenMai.push($div(elem).attr('alt'));
         //     });
 
-        //     console.log('imgElements', imgElements);
+        //     $div('span.news-info').each((i, elem) => {
+        //         ngayKhuyenMai.push($div(elem).text().trim());
+        //     });
 
-        //     if (imgElements.length > 0) {
-        //         imgTags2 = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
-        //     } else {
-        //         // return res.send('<h1>Không tìm thấy dữ liệu </h1>');
+
+
+        //     if (ngayKhuyenMai.length > 0) {
+        //         ngayKhuyenMaiSorted = ngayKhuyenMai
+        //         nameKhuyenMaiSorted = nameKhuyenMai
+        //         imgElementsKhuyenMaiSorted = imgElementsKhuyenMai
+
         //     }
+
         // }
 
+        // console.log(ngayKhuyenMai, imgElementsKhuyenMai, nameKhuyenMai);
+        
 
 
-
-
-        // blogList
 
         // Chiến giá online
         res.render('dienmaypico', {
             vietnamTime,
-            imgTags
+            imgTags,
+            imgElementsbannerRight,
+            // ngayKhuyenMaiSorted,
+            // nameKhuyenMaiSorted,
+            // imgElementsKhuyenMaiSorted
         });
     } catch (error) {
 
