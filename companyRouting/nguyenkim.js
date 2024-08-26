@@ -6,6 +6,19 @@ const cheerio = require('cheerio');
 module.exports = async function promotionNguyenKim(req, res) {
     const { url } = req.body;
     // console.log('url', url);
+    const date = new Date();
+    const options = {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        hour12: false,  // Sử dụng định dạng 24 giờ, nếu muốn 12 giờ, đổi thành true
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
+
+    const vietnamTime = date.toLocaleString('vi-VN', options);
 
     try {
 
@@ -167,6 +180,7 @@ module.exports = async function promotionNguyenKim(req, res) {
         res.render('nguyenkim', {
             imgTags,
             imgTags2,
+            vietnamTime,
             imgTags3,
             imgTags4,
             ngayKhuyenMaiSorted,
