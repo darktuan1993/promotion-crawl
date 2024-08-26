@@ -9,6 +9,22 @@ module.exports = async function promotionDienMayChoLon(req, res) {
         const response = await axios.get(`${url}?cachebuster=${new Date().getTime()}`);
         const htmlContent = response.data;
 
+        const date = new Date();
+        const options = {
+            timeZone: 'Asia/Ho_Chi_Minh',
+            hour12: false,  // Sử dụng định dạng 24 giờ, nếu muốn 12 giờ, đổi thành true
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+
+        const vietnamTime = date.toLocaleString('vi-VN', options);
+
+
+        
         // Load nội dung HTML bằng cheerio
         const $ = cheerio.load(htmlContent);
         const sectionContent = $('section').html();
@@ -129,6 +145,7 @@ module.exports = async function promotionDienMayChoLon(req, res) {
                 imgTags,
                 imgTags2,
                 imgTags3,
+                vietnamTime,
                 ngayKhuyenMai: ngayKhuyenMaiSorted,
                 nameKhuyenMai: nameKhuyenMaiSorted,
                 imgElementsKhuyenMai: imgElementsKhuyenMaiSorted
