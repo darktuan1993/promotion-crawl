@@ -13,7 +13,7 @@ const promotionDienMayXanh = require('./companyRouting/dienmayxanh');
 const promotionNguyenKim = require('./companyRouting/nguyenkim');
 const promotionPico = require('./companyRouting/dienmaypico');
 const promotionHC = require('./companyRouting/dienmayhc');
-
+const sosanhgia = require('./companyRouting/sosanh');
 // Root Path
 app.get("/", async (req, res) => {
     await res.render("server", { });
@@ -29,6 +29,8 @@ app.post('/promotionNguyenKim', promotionNguyenKim);
 app.post('/promotionPico', promotionPico);
 // HC
 app.post('/promotionHC', promotionHC)
+// SO SANH GIA
+app.post('/sosanhgia', sosanhgia)
 
 app.listen(5000, () => {
     console.log("Server chạy port 5000.");

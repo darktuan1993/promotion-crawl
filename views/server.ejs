@@ -75,8 +75,8 @@
 <body>
     <div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
         <div class="container-md">
-            <!-- <h4 class="text-center color-text">Đăng Tuấn 🩷 Mai Linh</h4> -->
             <h1 class="text-center color-text">Check Promotion</h1>
+            <!-- <h1 class="text-center color-text">Upgrade</h1> -->
             <form id="promotionForm" action="/" method="POST" class="text-center">
                 <div class="d-flex justify-content-center mb-3">
                     <select id="urlSelect" class="form-select color-text form-select-sm w-50 khung-select" name="url"
@@ -90,6 +90,7 @@
                         </option>
                         <option value="https://pico.vn/" data-action="/promotionPico">Điện Máy PICO</option>
                         <option value="https://hc.com.vn/" data-action="/promotionHC">Điện Máy HC</option>
+                        <option value="https://dienmaycholon.com/" data-action="/sosanhgia">So sánh bảng giá sản phẩm</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-grad fw-bold ">CRAWL</button>
@@ -114,6 +115,8 @@
         </div>
     </div>
 
+
+    
     <script>
         document.getElementById('urlSelect').addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
