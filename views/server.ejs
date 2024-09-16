@@ -16,13 +16,13 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .banner-bg {
+        /* .banner-bg {
             background: url(https://static.vecteezy.com/system/resources/previews/010/839/424/original/aesthetic-minimal-cute-pastel-pink-wallpaper-with-abstract-checkers-checkerboard-decoration-backdrop-illustration-perfect-for-wallpaper-backdrop-postcard-background-banner-vector.jpg) no-repeat center;
             background-size: cover;
             height: 100vh;
             padding: 0;
             display: flex;
-        }
+        } */
 
         .khung_hinh_glass {
             width: 50%;
@@ -34,11 +34,11 @@
             border-radius: 12px;
         }
 
-
+        /* 
         .btn-grad {
             background-image: linear-gradient(to left, #ffb3c6 0%, #ff8fab 50%, #fb6f92 80%);
-            margin: 10px;
-            padding: 15px 45px;
+            margin: 5px;
+            padding: 15px 20px;
             text-align: center;
             text-transform: uppercase;
             transition: 0.5s;
@@ -46,7 +46,7 @@
             color: white;
             box-shadow: 0 0 0 0 #fb6f92;
             border-radius: 10px;
-        }
+        } */
 
         .btn-grad:hover {
             background-position: right center;
@@ -55,19 +55,24 @@
             text-decoration: none;
         }
 
-        .khung-select {
+        /* .khung-select {
             padding: 15px;
             border-radius: 10rem;
             font-size: 18px;
 
-        }
+        } */
 
-        .color-text {
+        /* .color-text {
             color: #ff8fab;
             font-family: "Playwrite IT Trad", cursive;
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: normal;
+        } */
+
+        .margin-zero {
+            margin: 0 !important;
+            margin-bottom: 0 !important;
         }
     </style>
 </head>
@@ -75,26 +80,104 @@
 <body>
     <div class="container-fluid vh-100 d-flex justify-content-center banner-bg align-items-center">
         <div class="container-md">
-            <h1 class="text-center color-text">Promotions</h1>
-            <!-- <h1 class="text-center color-text">Upgrade</h1> -->
-            <form id="promotionForm" action="/" method="POST" class="text-center">
-                <div class="d-flex justify-content-center mb-3">
-                    <select id="urlSelect" class="form-select color-text form-select-sm w-50 khung-select" name="url"
-                        aria-label=".form-select-sm example" required>
-                        <option value="" selected disabled>Chọn đơn vị</option>
-                        <option value="https://dienmaycholon.com/" data-action="/promotionDienMayChoLon">Điện Máy Chợ
-                            Lớn</option>
-                        <option value="https://www.dienmayxanh.com/" data-action="/promotionDienMayXanh">Điện Máy Xanh
-                        </option>
-                        <option value="https://www.nguyenkim.com/" data-action="/promotionNguyenKim">Điện Máy Nguyễn Kim
-                        </option>
-                        <option value="https://pico.vn/" data-action="/promotionPico">Điện Máy PICO</option>
-                        <option value="https://hc.com.vn/" data-action="/promotionHC">Điện Máy HC</option>
-                        <option value="https://dienmaycholon.com/" data-action="/sosanhgia">So sánh giá sản phẩm</option>
-                    </select>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        type="button" role="tab" aria-controls="home" aria-selected="true">Check thông tin khuyến
+                        mại</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="false">So sánh giá sản
+                        phẩm</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                        type="button" role="tab" aria-controls="contact" aria-selected="false">Về ứng dụng</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <!-- <h1 class="text-center color-text">Promotions Check</h1> -->
+                    <!-- <h1 class="text-center color-text">Upgrade</h1> -->
+                    <form id="promotionForm" action="/" method="POST" class="text-center p-3">
+                        <div class="d-flex justify-content-center mb-3">
+                            <select id="urlSelect" class="form-select color-text form-select-sm w-50 khung-select"
+                                name="url" aria-label=".form-select-sm example" required>
+                                <option value="" selected disabled>Chọn đơn vị</option>
+                                <option value="https://dienmaycholon.com/" data-action="/promotionDienMayChoLon">Điện
+                                    Máy Chợ
+                                    Lớn</option>
+                                <option value="https://www.dienmayxanh.com/" data-action="/promotionDienMayXanh">Điện
+                                    Máy Xanh
+                                </option>
+                                <option value="https://www.nguyenkim.com/" data-action="/promotionNguyenKim">Điện Máy
+                                    Nguyễn Kim
+                                </option>
+                                <option value="https://pico.vn/" data-action="/promotionPico">Điện Máy PICO</option>
+                                <option value="https://hc.com.vn/" data-action="/promotionHC">Điện Máy HC</option>
+                            </select>
+                            <button type="submit" class="btn btn-success fw-bold " style="margin-left: 20px;">Lấy dữ
+                                liệu</button>
+                        </div>
+                    </form>
+                    <div>
+                    </div>
+
+
                 </div>
-                <button type="submit" class="btn btn-grad fw-bold ">CRAWL</button>
-            </form>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form class="form-inline p-3">
+                        <div class="d-flex justify-content-center mb-3">
+                            <input class="form-control mr-sm-3" type="search" style="
+    width: 75%;" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-success fw-bold disabled" style="margin-left: 20px;"
+                                type="submit">Tìm kiếm</button>
+                        </div>
+                    </form>
+                    <div>
+                        <p>Ví dụ: nhập thông tin cần tìm Iphone 16 sẽ ra bảng giá sản phẩm từ cao đến thấp của các đơn vị</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+                    <div class="p-3">
+                        <p>Ứng dụng này cho phép người tiêu dùng tìm kiếm và so sánh giá cả của các sản phẩm hoặc
+                            dịch vụ từ nhiều nguồn cung cấp khác nhau. Các trang web này thu thập thông tin giá cả từ
+                            các cửa hàng, sàn thương mại
+                            điện tử, hoặc nhà cung cấp dịch vụ khác nhau, sau đó hiển thị chúng dưới dạng danh sách hoặc
+                            bảng để người dùng có thể
+                            dễ dàng so sánh và lựa chọn sản phẩm hoặc dịch vụ với mức giá phù hợp nhất.
+
+                        <p>
+                            Ngoài việc so sánh giá, các trang web này còn cung cấp thêm thông tin hữu ích như đánh giá
+                            sản phẩm, các chương trình
+                            khuyến mãi, tính năng sản phẩm, và sự khác biệt về dịch vụ hậu mãi. Việc sử dụng các trang
+                            web so sánh giá giúp người
+                            tiêu dùng tiết kiệm thời gian, công sức, và tiền bạc khi mua sắm trực tuyến, đồng thời đưa
+                            ra quyết định mua hàng thông
+                            minh và hợp lý hơn.
+
+
+                        </p>
+                        </p>
+                        <b>Update version 1.1</b>
+                        <p style="margin: 0 !important;">- Check thông tin khuyến mại đơn vị điện máy </p>
+                        <p style="margin: 0 !important;">- Xây dựng tính năng crawl data sản phẩm </p>
+                    </div>
+
+                </div>
+            </div>
+            <i class="d-flex justify-content-center color-text align-items-center" style="
+                                                                                        position: absolute;
+                                                                                        bottom: 0;
+                                                                                        left: 50%;
+                                                                                        transform: translateX(-50%);
+                                                                                        width: 100%;
+                                                                                        height: 50px;
+                                                                                        margin: 0;
+                                                                                        font-size: 15px;">Development
+                by D4rKTu4z </i>
         </div>
     </div>
     <script>

@@ -128,7 +128,7 @@ module.exports = async function promotionDienMayXanh(req, res) {
 
 
         // Tuần lễ thương hiệu
-        const promoAnother = $('.prd-another').html();
+        const promoAnother = $('.banner-brand-week').html();
         if (promoAnother) {
             const $promoAnother = cheerio.load(promoAnother);
             const imgElements = [];
@@ -140,7 +140,7 @@ module.exports = async function promotionDienMayXanh(req, res) {
             });
 
             if (imgElements.length > 0) {
-                imgTags5 = imgElements.map(src => `<img style="max-width: 50%;" src="${src}" alt="Image">`).join('');
+                imgTags5 = imgElements.map(src => `<img style="max-width: 75%;" src="${src}" alt="Image">`).join('');
             } else {
                 imgTags5 = "Không có thông tin"
             }
