@@ -65,11 +65,7 @@ module.exports = async function promotionDienMayXanh(req, res) {
 
                 if (imgElements.length > 0) {
                     imgTags = imgElements.map(src => `<img src="${src}" alt="Image">`).join('');
-                } else {
-                    return res.send('<h1>Không tìm thấy</h1>');
                 }
-            } else {
-                return res.send('<h1>Không tìm thấy</h1>');
             }
         } else {
             return res.send('<h1>Không tìm thấy dữ liệu</h1>');
@@ -290,6 +286,6 @@ module.exports = async function promotionDienMayXanh(req, res) {
         });
 
     } catch (error) {
-        res.status(500).send('Lỗi dữ liệu không thể lấy được dữ liệu của Điện Máy Xanh, vui lòng load lại dữ liệu thêm lần nữa, Mai Linh tình yêu của anh ơi');
+        res.status(500).send('Lỗi dữ liệu không thể lấy được dữ liệu của Điện Máy Xanh');
     }
 };
