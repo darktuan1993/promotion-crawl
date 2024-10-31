@@ -23,10 +23,10 @@ app.get("/", async (req, res) => {
     
     console.log(`IP của client: ${ip}`);
     // Lưu IP vào MongoDB
-    const ipAddress = new IpAddress({ ip });
-    await ipAddress.save()
-        .then(() => console.log(`Địa chỉ IP ${ip} đã được lưu vào DB`))
-        .catch(err => console.log('Lỗi lưu địa chỉ IP:', err));
+    // const ipAddress = new IpAddress({ ip });
+    // await ipAddress.save()
+    //     .then(() => console.log(`Địa chỉ IP ${ip} đã được lưu vào DB`))
+    //     .catch(err => console.log('Lỗi lưu địa chỉ IP:', err));
     
     res.setHeader('Access-Control-Allow-Origin', '*');
     // Request methods you wish to allow
