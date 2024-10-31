@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-// const puppeteer = require('puppeteer');
+const { connectMongoDB } = require("./setting/connectMongoDB.js");
+const IpAddress = require('./models/IpAddress'); // Đường dẫn tới file model
 
 app.use(express.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, 'views'));
@@ -17,8 +18,26 @@ const promotionHC = require('./companyRouting/dienmayhc');
 const sosanhgia = require('./companyRouting/sosanh');
 // Root Path
 app.get("/", async (req, res) => {
+    const ip = req.ip; // Hoặc req.connection.remoteAddress
+    console.log(req);
+    
+    console.log(`IP của client: ${ip}`);
+    // Lưu IP vào MongoDB
+    const ipAddress = new IpAddress({ ip });
+    await ipAddress.save()
+        .then(() => console.log(`Địa chỉ IP ${ip} đã được lưu vào DB`))
+        .catch(err => console.log('Lỗi lưu địa chỉ IP:', err));
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,*');
     await res.render("server", { });
 });
+
+// Connected MongoDB
+connectMongoDB().then()
 
 // ĐIỆN MÁY CHỢ LỚN
 app.post('/promotionDienMayChoLon', promotionDienMayChoLon);
