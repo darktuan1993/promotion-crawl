@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-const { connectMongoDB } = require("./setting/connectMongoDB.js");
+// const { connectMongoDB } = require("./setting/connectMongoDB.js");
 // const IpAddress = require('./models/IpAddress'); // Đường dẫn tới file model
 
 app.use(express.urlencoded({extended: true}));
