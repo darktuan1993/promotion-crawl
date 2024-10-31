@@ -5,7 +5,7 @@ const mongoURI = 'mongodb+srv://bachdangtuandev:WYrA64rgtAfsdEWf@cluster0.6wyjf.
 const connectMongoDB = async () => {
     try {
         await mongoose.connect(mongoURI);
-        console.log(`######### Kết nối thành công tới mongoDB Atlas ${mongoURI} `);
+        console.log(`### Kết nối thành công tới mongoDB Atlas ${mongoURI} `);
     } catch (err) {
         console.error('Lỗi kết nối MongoDB:', err.message);
     }
