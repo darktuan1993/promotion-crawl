@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment-timezone'); // Thêm dòng này để import moment-timezone
 
 const ipAddressSchema = new mongoose.Schema({
     ip: {
@@ -8,7 +7,7 @@ const ipAddressSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: () => moment.tz('Asia/Ho_Chi_Minh').toDate() // Lưu thời gian ở UTC+7
+        default: Date.now
     }
 });
 
